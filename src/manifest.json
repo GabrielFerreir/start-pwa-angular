@@ -1,0 +1,20 @@
+{
+  "name": "app",
+  "short_name": "app",
+  "description": "dummy application to demo manifest without SW",
+  "start_url": "/index.html",
+  "scope": ".",
+  "background_color": "#EEE",
+  "theme_color": "#4A148C",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "dir": "ltr",
+  "lang": "pt-br",
+  "icons": [
+    {
+      "src": "/assets/apple.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    }
+  ]
+}
