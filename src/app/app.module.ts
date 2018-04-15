@@ -7,10 +7,12 @@ import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
 import {SharedModule} from './shared.module';
+import { SwSandboxComponent } from './sw-sandbox/sw-sandbox.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SwSandboxComponent
   ],
   imports: [
     SharedModule,

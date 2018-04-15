@@ -23,5 +23,9 @@
         "/assets/**"
       ]
     }
-  }]
+  }],
+  "push" : {
+    "showNotifications" : true,
+    "backgroundOnly" : false
+    }
 }
