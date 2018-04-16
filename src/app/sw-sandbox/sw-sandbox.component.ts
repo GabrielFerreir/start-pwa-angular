@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -25,7 +26,6 @@ export class SwSandboxComponent implements OnInit {
     })
       .then(pushSubscription => {
         console.log(pushSubscription);
-        console.log(JSON.stringify(pushSubscription));
         this.submit(pushSubscription);
       })
       .catch(err => {
@@ -34,7 +34,16 @@ export class SwSandboxComponent implements OnInit {
   }
 
   unsubscribeFromPush() {
-
+    this.swPush.subscription
+      .subscribe(pushSubscription => {
+        pushSubscription.unsubscribe()
+        .then(success => {
+          console.log('Unsubscription!', success)
+        })
+        .catch(err => {
+          console.log('Error', err)
+        })
+      });
   }
 
   submit(req) {
@@ -43,14 +52,14 @@ export class SwSandboxComponent implements OnInit {
       push: req
     }
     const res = this.http.post('http://localhost:3000/push', body)
-    .subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log("Error occured");
-      }
-    );
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log("Error occured");
+        }
+      );
   }
 
 
