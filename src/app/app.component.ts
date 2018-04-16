@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Http } from '@angular/http';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+
+  usuarios: any;
+
+  constructor(private http: Http) {
+    this.getUsers();
+  }
+
+  getUsers() {
+    const response = this.http.get('http://localhost:3000/user')
+      .subscribe(
+        res => {
+          this.usuarios = res.json();
+          console.log(this.usuarios);
+        },
+        err => {
+          console.log('Erro ao carregar usuario');
+        }
+      );
+  }
 }

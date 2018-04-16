@@ -38,7 +38,9 @@ async function insert(req, res) {
 async function select(req, res) {
   try {
     const data  = await repository.select();
-    return res.json(data);
+
+    const result = Object.assign(data, {data: new Date()})
+    return res.json(result);
   } catch (error) {
     return res.finish({
       message: 'Ocorreu um erro interno',

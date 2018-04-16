@@ -24,7 +24,19 @@
       ]
     }
   }],
-  "push" : {
+  "dataGroups": [{
+    "name": "user",
+    "urls": [
+      "http://localhost:3000/user"
+    ],
+    "cacheConfig": {
+      "maxSize": 100,
+      "maxAge": "3d",
+      "timeout": "1m",
+      "strategy": "freshness"
+    }
+  }],
+  "push": {
     "showNotifications" : true,
     "backgroundOnly" : false
     }

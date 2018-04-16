@@ -1,7 +1,4 @@
-import { NgModule } from '@angular/core';
-
-
-
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
 
@@ -20,6 +17,7 @@ import { SwSandboxComponent } from './sw-sandbox/sw-sandbox.component';
   ],
   providers: [
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,14 @@
-<app-sw-sandbox></app-sw-sandbox>
+<mat-toolbar class="mat-elevation-z8">
+  <span>Lista de usuarios</span>
+</mat-toolbar>
+
+<mat-card *ngIf="usuarios">
+  <mat-list>
+    <mat-list-item *ngFor="let usuario of usuarios.content">
+      <h3 matLine> {{ usuario.name }} </h3>
+      <p matLine> {{ usuario.email }} </p>
+    </mat-list-item>
+  </mat-list>
+
+  <span>{{ usuarios.data | date:'yyyy-MM-dd HH:mm' }}</span>
+</mat-card>
