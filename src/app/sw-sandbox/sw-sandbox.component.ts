@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
+import { Http } from '@angular/http';
 
 
 @Component({
@@ -11,7 +12,7 @@ export class SwSandboxComponent implements OnInit {
 
   VAPID_PUBLIC_KEY: string;
 
-  constructor(private swPush: SwPush) { }
+  constructor(private swPush: SwPush, private http: Http) { }
 
   ngOnInit() {
 
@@ -25,6 +26,7 @@ export class SwSandboxComponent implements OnInit {
       .then(pushSubscription => {
         console.log(pushSubscription);
         console.log(JSON.stringify(pushSubscription));
+        this.submit(pushSubscription);
       })
       .catch(err => {
         console.error(err);
@@ -34,5 +36,23 @@ export class SwSandboxComponent implements OnInit {
   unsubscribeFromPush() {
 
   }
+
+  submit(req) {
+
+    const body = {
+      push: req
+    }
+    const res = this.http.post('http://localhost:3000/push', body)
+    .subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log("Error occured");
+      }
+    );
+  }
+
+
 
 }
